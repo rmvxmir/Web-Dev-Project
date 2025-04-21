@@ -1,0 +1,73 @@
+<div class="main">
+  <div class="animated-background">
+    <div class="gradient-sphere sphere-1"></div>
+    <div class="gradient-sphere sphere-2"></div>
+    <div class="gradient-sphere sphere-3"></div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <div class="login-container">
+    <div class="login-header">
+        <h1>Welcome Back</h1>
+        <p>Sign in to continue your journey</p>
+    </div>
+  
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input
+            type="username"
+            class="form-input"
+            placeholder="Login"
+            required
+            [(ngModel)]="username"
+            name="username"
+          >
+          <i class="input-icon fas fa-envelope"></i>
+          <span class="error-message" id="emailError"></span>
+        </div>
+  
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-input"
+            placeholder="Password"
+            required
+            [(ngModel)]="password"
+            name="password"
+          >
+          <i class="input-icon fas fa-lock"></i>
+          <span class="error-message" id="passwordError"></span>
+        </div>
+  
+        <button type="submit" class="submit-button">Sign In</button>
+    </form>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  
+    <div class="divider">
+        <span>or continue with</span>
+    </div>
+  
+    <div class="social-login">
+        <button class="social-button" onclick="handleSocialLogin('google')">
+            <i class="fab fa-google"></i>
+        </button>
+        <button class="social-button" onclick="handleSocialLogin('apple')">
+            <i class="fab fa-apple"></i>
+        </button>
+        <button class="social-button" onclick="handleSocialLogin('github')">
+            <i class="fab fa-github"></i>
+        </button>
+    </div>
+  
+    <div class="additional-options">
+        <a href="#" onclick="handleForgotPassword()">Forgot password?</a>
+        <p style="margin-top: 1rem">
+            Don't have an account? 
+            <a href="#" onclick="handleSignUp()">Sign up</a>
+        </p>
+    </div>
+  </div>
+</div>
