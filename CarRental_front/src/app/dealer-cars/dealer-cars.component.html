@@ -1,0 +1,104 @@
+<!-- Header with Navigation -->
+<header>
+  <nav class="navScrolled" id="navbar">
+    <a [routerLink]="['/']" class="logo" style="text-decoration: none; color: inherit;">
+      Velocity<span>Rentals</span>
+    </a>    
+    <div class="nav-links">
+      <a [routerLink]="['/']">Home</a>
+      <a routerLink="/cars">Cars</a>
+      <a routerLink="/service">Services</a>
+      <a (click)="scrollTo('about')">About</a>
+      <a (click)="scrollTo('contact')">Contact</a>
+      <a [routerLink]="['/profile']" class="cta-button">My Profile</a>
+    </div>
+  </nav>
+</header>
+
+
+<!-- Dealer Showcase Section -->
+<section class="dealer-showcase" *ngIf="dealer">
+  <div class="dealer-header">
+    <div class="dealer-glow"></div>
+    <h1>{{dealer.dealer}} Fleet</h1>
+    <p>Premium selection of {{dealer.dealer}} vehicles available for rent</p>
+  </div>
+  
+  <div class="dealer-cars-container">
+    <div class="car-card" *ngIf="dealer">
+      <div class="car-image-wrapper">
+        <img [src]="dealer.image" [alt]="dealer.make" class="car-image">
+        <div class="car-badge">{{dealer.type}}</div>
+        <div class="car-price">${{dealer.price}}<span>/day</span></div>
+      </div>
+      
+      <div class="car-details">
+        <h3>{{dealer.make}}</h3>
+        <div class="car-specs">
+          <div class="spec">
+            <i class="fas fa-gas-pump"></i>
+            <span>{{dealer.fuelType}}</span>
+          </div>
+          <div class="spec">
+            <i class="fas fa-user-friends"></i>
+            <span>{{dealer.capacity}} seats</span>
+          </div>
+        </div>
+        <div class="car-actions">
+          <button class="rent-btn">Rent Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-about" id="about">
+      <div class="footer-logo">Velocity<span>Rentals</span></div>
+      <p class="footer-about">Providing premium car rental services since 2010. We're committed to offering the best vehicles at competitive prices with exceptional customer service.</p>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/about">About Us</a></li>
+        <li><a routerLink="/services">Services</a></li>
+        <li><a routerLink="/cars">Cars</a></li>
+        <li><a routerLink="/blog">Blog</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h3>Support</h3>
+      <ul>
+        <li><a routerLink="/faq">FAQ</a></li>
+        <li><a routerLink="/privacy">Privacy Policy</a></li>
+        <li><a routerLink="/terms">Terms & Conditions</a></li>
+        <li><a routerLink="/contact">Contact</a></li>
+        <li><a routerLink="/help">Help Center</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links" id="contact">
+      <h3>Contact Us</h3>
+      <p><i class="fa-brands fa-font-awesome"></i> 123 Rental Street, Auto City</p>
+      <p><i class="fa-solid fa-phone"></i> +7 (747) 244-2245</p>
+      <p><i class="fas fa-envelope"></i> info&#64;velocityrentals.com</p>
+      <p><i class="fas fa-clock"></i> Mon-Sun: 24/7</p>
+    </div>
+  </div>
+
+  <div class="copyright">
+    &copy; {{ currentYear }} Velocity Rentals. All rights reserved.
+  </div>
+</footer>
