@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from rest_framework import permissions, status
+from rest_framework import permissions, status, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model  # Import get_user_model
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomUserSerializer
+from .models import CustomUser
 
 # Custom token obtain view to add user info to JWT
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -38,3 +40,7 @@ def register(request):
             'refresh': str(refresh),
             'access': str(refresh.access_token),
         }, status=status.HTTP_201_CREATED)
+
+class CustomUserListView(generics.ListAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
