@@ -11,6 +11,7 @@ class Car(models.Model):
     capacity = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     dealer = models.CharField(max_length=100)
+    publisher = models.ForeignKey("users.User", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.make} {self.car_type}"
