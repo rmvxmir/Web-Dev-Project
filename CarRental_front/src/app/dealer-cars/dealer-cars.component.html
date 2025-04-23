@@ -17,31 +17,31 @@
 
 
 <!-- Dealer Showcase Section -->
-<section class="dealer-showcase" *ngIf="dealer">
+<section class="dealer-showcase" *ngIf="carss.length > 0">
   <div class="dealer-header">
     <div class="dealer-glow"></div>
-    <h1>{{dealer.dealer}} Fleet</h1>
-    <p>Premium selection of {{dealer.dealer}} vehicles available for rent</p>
+    <h1>{{dealer}} Fleet</h1>
+    <p>Premium selection of {{dealer}} vehicles available for rent</p>
   </div>
   
   <div class="dealer-cars-container">
-    <div class="car-card" *ngIf="dealer">
+    <div class="car-card" *ngFor="let c of carss">
       <div class="car-image-wrapper">
-        <img [src]="dealer.image" [alt]="dealer.make" class="car-image">
-        <div class="car-badge">{{dealer.type}}</div>
-        <div class="car-price">${{dealer.price}}<span>/day</span></div>
+        <img [src]="c.image" [alt]="c.make" class="car-image">
+        <div class="car-badge">{{c.car_type}}</div>
+        <div class="car-price">${{c.price}}<span>/day</span></div>
       </div>
       
       <div class="car-details">
-        <h3>{{dealer.make}}</h3>
+        <h3>{{c.make}}</h3>
         <div class="car-specs">
           <div class="spec">
             <i class="fas fa-gas-pump"></i>
-            <span>{{dealer.fuelType}}</span>
+            <span>{{c.fuel_type}}</span>
           </div>
           <div class="spec">
             <i class="fas fa-user-friends"></i>
-            <span>{{dealer.capacity}} seats</span>
+            <span>{{c.capacity}} seats</span>
           </div>
         </div>
         <div class="car-actions">

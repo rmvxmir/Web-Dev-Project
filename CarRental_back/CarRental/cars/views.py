@@ -65,6 +65,17 @@ def car_update(request, pk):
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+def cars_by_dealer(request, dealer_id):
+    try:
+        dealer = Dealer.objects.get(pk=dealer_id)
+    except Dealer.DoesNotExist:
+        return Response({'detail': 'Dealer not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    cars = Car.objects.filter(dealer=dealer)
+    serializer = CarSerializer(cars, many=True)
+    return Response(serializer.data)
+
 ## DEALER
 
 # Create Dealer

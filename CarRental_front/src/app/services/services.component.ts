@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { Dealer, dealer } from '../dealers';
+import { Dealer } from '../dealers';
 import { CommonModule, NgFor, NgIf, ViewportScroller } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CarService } from '../car.service';
@@ -14,7 +14,7 @@ import { AuthService } from '../auth.service';
 })
 export class ServicesComponent implements OnInit {
   currentYear = new Date().getFullYear();
-  dealer: Dealer[] = dealer
+  dealer: Dealer[] = []
   
   carData = {
     image: '',
@@ -23,19 +23,23 @@ export class ServicesComponent implements OnInit {
     car_type: '',
     capacity: 0,
     price: 0,
-    dealer: ''
+    publisher: '',
+    dealer: 0
   };
 
-  isDealer: boolean = false;
+  isPublisher: boolean = false;
 
   constructor(private router: Router, private viewportScroller: ViewportScroller, private carService: CarService, private authService: AuthService) {}
 
   ngOnInit() {
     const user = this.authService.getUser();
     if (user && user.is_dealer === true) {
-      this.isDealer = true;
-      this.carData.dealer = user.username;
+      this.isPublisher = true;
+      this.carData.publisher = user.username;
     }
+    this.carService.getDealers().subscribe((dealers) => {
+      this.dealer = dealers;
+    })
   }
 
   onSubmit() {
@@ -52,8 +56,8 @@ export class ServicesComponent implements OnInit {
     }
   }
 
-  navigateToDealer(dealer: string) {
-    this.router.navigate(['/service', dealer.toLowerCase()]);
+  navigateToDealer(dealer: number) {
+    this.router.navigate(['/service', dealer]);
   }
 
   scrollTo(anchor: string): void {

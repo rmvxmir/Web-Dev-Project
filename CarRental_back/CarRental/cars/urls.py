@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CarCreateView, car_update, CarGetView, car_delete, DealerDeleteView, DealerUpdateView, DealerCreateView, DealerDetailView, DealerListView
+from .views import CarCreateView, car_update, CarGetView, car_delete, DealerDeleteView, DealerUpdateView, DealerCreateView, DealerDetailView, DealerListView, cars_by_dealer
 
 urlpatterns = [
     path('upload/', CarCreateView.as_view(), name='car-upload'),
@@ -9,6 +9,7 @@ urlpatterns = [
     path('dealer/upload/', DealerCreateView.as_view(), name='dealer-upload'),
     path('dealer/', DealerListView.as_view(), name='dealer-list'),
     path('dealer/<int:pk>/', DealerDetailView.as_view(), name='dealer-id'),
-    path('dealer/update/<int:pk>', DealerUpdateView.as_view(), name='dealer-update'),
-    path('dealer/delete/<int:pk>', DealerDeleteView.as_view(), name='dealer-delete'),
+    path('dealer/update/<int:pk>/', DealerUpdateView.as_view(), name='dealer-update'),
+    path('dealer/delete/<int:pk>/', DealerDeleteView.as_view(), name='dealer-delete'),
+    path('dealer-cars/<int:dealer_id>/', cars_by_dealer, name='cars-by-dealer'),
 ]
